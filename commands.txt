@@ -325,3 +325,5 @@ uniq -d	Show only duplicate lines	-d
 grep -i	Search (ignore case)	-i
 df -h	Disk space (human-readable)	-h
 chmod +x	Make a file executable	+x
+
+hi
