@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
@@ -9,10 +8,10 @@
 int main() {
 
     int fd = open("file.txt", O_RDONLY);
-    
-	int fd_write = open("file3.txt",  O_WRONLY | O_CREAT,0644);
 
-	if (fd < 0)
+        int fd_write = open("file3.txt",  O_WRONLY | O_CREAT,0644);
+
+        if (fd < 0)
     {
         perror("Error opening file 1");
         return 1;
@@ -31,14 +30,14 @@ int main() {
 
     while ((ret = read(fd, buffer, sizeof(buffer))) > 0)
     {
-  	 
+
         write(fd_write, buffer, ret);
     }
 
-    if (ret < 0) 
+    if (ret < 0)
         perror("Error reading file");
 
     close(fd);
     return 0;
 }
-
+ 
