@@ -38,6 +38,7 @@ int main() {
         perror("Error reading file");
 
     close(fd);
+    close(fd_write);
     return 0;
 }
  
