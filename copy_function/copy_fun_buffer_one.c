@@ -6,7 +6,7 @@
 #include <fcntl.h>
 
 int main() {
-
+//
     int fd = open("file.txt", O_RDONLY);
 
         int fd_write = open("file3.txt",  O_WRONLY | O_CREAT,0644);
