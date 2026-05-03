@@ -41,13 +41,4 @@ int main() {
     close(fd);
     return 0;
 }
- while ((ret = read(fd, buffer, sizeof(buffer))) > 0)
-    {
-
-        write(fd_write, buffer, ret);
-    }
-
-    if (ret < 0)
-        perror("Error reading file");
-
 
