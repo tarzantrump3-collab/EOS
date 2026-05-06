@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "sock.h"
+#include "host.h"
 
 void report(const char* msg, int terminate) {
     perror(msg);
