@@ -1,0 +1,39 @@
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+
+#define PIPE_PATH "/tmp/my_pipe"
+
+void main()
+{
+	int ret, pipe = 0;
+	char buffer[1024] = {0};
+
+	pipe = open(PIPE_PATH, O_WRONLY);
+	if(pipe < 0) {
+		printf("pipe: %s, open err: %s\n", PIPE_PATH, strerror(errno));
+		return;
+	}
+	printf("pipe: %s, openfd: %d\n", PIPE_PATH, pipe);	
+	printf("pipe: %s, Writing \n", PIPE_PATH);
+	int count = 0;
+	while(1) {
+		
+		int rd = read(0, buffer, sizeof(buffer));
+		if(rd <= 0) {
+			printf("read from stdin error: %s\n", strerror(errno));
+			break;
+		}
+		
+		int wr = write(pipe, buffer, rd);
+		if(wr > 0) {
+			printf("Write: %d, Buffer: %s\n", wr, buffer);
+		}
+	}
+	close(pipe);
+}
+
