@@ -1,0 +1,42 @@
+Pthread Lab Experiments
+
+1: Basic Thread Creation
+Create a thread that prints: "Hello from thread". Main thread should print: "Hello from main"
+
+2: Multiple Threads Execution
+
+Create 5 threads. Each thread prints its thread number and process ID
+
+3: Using pthread_join()
+
+Create 3 threads. Each thread sleeps for different durations. Ensure main thread waits for all threads to complete
+
+4: Passing Arguments to Threads
+
+Pass a number to each thread. Each thread prints square of the number.
+
+5: Thread Return Values
+
+Each thread computes factorial of a number. Return result using `pthread_exit(). Main thread collects results using `pthread_join().
+
+6: Thread Cancellation
+
+Create a thread running an infinite loop. Cancel it from main thread using `pthread_cancel().
+
+7: Shared Data Between Threads
+
+Create 4 threads. Each increments a global variable 1000 times. Display final value.
+
+8: Thread Synchronization with Mutex
+
+Modify previous experiment using `pthread_mutex_lock()` and pthread_mutex_unlock()`
+
+9: Producer-Consumer Problem
+
+Implement producer-consumer using threads. Use mutex and condition variables. (Hint:Use pthread_cond_wait()`and pthread_cond_signal()`)
+
+10: Thread Pool Simulation
+
+Create a fixed number of worker threads. Assign tasks dynamically (e.g., simple computations). Understand Task scheduling and Thread reuse
+
+*****************************************

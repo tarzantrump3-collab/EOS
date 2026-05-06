@@ -1,0 +1,105 @@
+Lab Assignment on "chrt" command, scheduling policy, priority etc
+
+The chrt command is used to:
+
+Set scheduling policy: `SCHED_FIFO`, `SCHED_RR`, `SCHED_OTHER`
+Set real-time priority (1–99 for FIFO/RR)
+View process scheduling info
+
+Note : chrt command must be executed with sudo privilege
+Make sure that you have another terminal window open to kill a process in the current window, since playing with scheduling policy and priority can cause a program/system hang or crash.
+
+1. View Scheduling Policy of a Process
+
+Check man page of chrt to understand all options.
+Run a simple program with infinite loop
+Use command 
+
+chrt -p <pid>
+
+Observe default scheduling policy (`SCHED_OTHER`)
+
+2. Set Real-Time FIFO Scheduling
+
+Run a program using infinite loop and use command 
+sudo chrt -f 50 ./a.out
+
+Verify using command
+chrt -p <pid>
+
+Observe that Process runs with high priority
+
+3. Compare FIFO vs Round Robin
+
+Run two CPU-bound programs: One program (prog1) continuously displaying numbers 10 to 99 on screen and another (prog2) continuously displaying numbers 100 to 999 continuously. 
+
+Use commands -
+sudo chrt -f 60 ./prog1 &
+sudo chrt -r 60 ./prog2 &
+
+Observe that when it is FIFO → one program runs continuously
+When it is RR → time-sharing happens
+
+4. Effect of Priority Levels
+
+Run the same programs as above with different priorities. Change priority of one of them with respect to other-
+
+sudo chrt -f 10 ./prog1 &
+sudo chrt -f 80 ./prog1 &
+Observe that Higher priority dominates CPU
+
+5. Demonstration of Task Starvation
+
+Run a program with infinite loop continuously displaying numbers. Make the program high-priority:
+
+sudo chrt -f 90 ./loop
+
+Open another terminal and try running normal commands in that terminal.
+
+Observe that System becomes unresponsive
+
+6. Change Scheduling of Running Process
+
+Start a program normally
+Change its policy:
+
+sudo chrt -r -p 40 <pid>
+
+Observe that you can Modify scheduling dynamically
+
+7. Measure Execution Time Impact
+
+Run a program to do some complex calculation (for example, multiplying 1000 double floating point numbers):
+
+Find the time required to execute the program by running the program under time command -
+time ./prog
+Now change scheduling policy and again time the program.
+sudo chrt -f 70 time ./prog
+
+Compare Execution time differences
+
+8. Combine chrt with ps
+
+Run processes with different policies
+ps -eo pid, cmd, policy, rtprio
+
+Correlate `chrt` settings with process table
+
+9. Real-Time Scheduling with Multiple Processes
+
+Run multiple programs with varying priorities:
+
+sudo chrt -f 20 ./p1 &
+sudo chrt -f 40 ./p2 &
+sudo chrt -f 60 ./p3 &
+
+Observe that Highest priority gets CPU first
+
+10. Safe Real-Time Experiment (Controlled Loop)
+
+Write a program that Runs for limited time (not infinite loop)
+Give command
+sudo chrt -f 80 ./safe_prog
+
+Avoid system hang while testing real-time scheduling
+
