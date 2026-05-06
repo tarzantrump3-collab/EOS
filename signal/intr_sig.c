@@ -6,11 +6,11 @@ int count = 0;
 
 void handler(int signum)
 {
-    printf("Signal received: %d\n im not closing yet.", signum);
+    printf("Signal received: %d\n im not closing yet.\n", signum);
     ++count;
     if(count == 3)
     {
-        printf("Received signal 3 times,assign default handler exiting now.");
+        printf("Received signal 3 times,assign default handler exiting now.\n");
         signal(SIGINT, SIG_DFL);
     }
 }
