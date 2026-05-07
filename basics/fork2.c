@@ -1,6 +1,4 @@
 // declare an integer variable. in child change the value of variable and print.//print value of variable without changing it
-//
-
 #include<stdio.h>
 #include<unistd.h>
 #include<sys/types.h>
@@ -10,8 +8,8 @@ int main()
 {
 	int x =10;
 	pid_t pid = fork();
-	fork();
-	fork();
+	//fork();
+	//fork();
 	if (pid<0)
 	{
 		fprintf(stderr,"fork1 failed\n");
@@ -30,6 +28,5 @@ int main()
 	        printf("child id %d parent id %d\n",getpid(),pid);
 		printf("parent process %d\n",x);
 	}
-
 	return 0;
 }
