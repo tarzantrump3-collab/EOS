@@ -1,0 +1,59 @@
+PGDESD Feb 2026
+Embedded OS Assignment 3
+Linux Process System Calls Lab Experiments
+
+1. Creating a Child Process
+   Write a C program using fork():
+
+   * Parent prints its PID and child PID
+   * Child prints its PID and parent PID
+   * Verify both processes using ps
+
+2. Parent Waiting for Child
+
+   * Child prints numbers from 1 to 5 with delay
+   * Parent waits using wait()
+   * Observe execution order
+
+3. Using exit() Status
+
+   * Child exits with status 5 using exit(5)
+   * Parent retrieves exit status using wait()
+
+4. Using exec()
+
+   * Child executes "ls -l" using exec()
+   * Parent waits for completion
+
+5. Multiple Children with waitpid()
+
+   * Create 3 child processes
+   * Each exits at different times
+   * Parent handles them using waitpid()
+
+6. Process Tree Creation
+
+   * Create hierarchy: Parent → Child1 → Grandchild, Parent → Child2
+   * Display PIDs and PPIDs
+
+7. Zombie Process
+
+   * Child exits immediately
+   * Parent delays wait()
+   * Observe zombie state using ps
+
+8. Orphan Process
+
+   * Parent exits before child
+   * Observe new parent of child
+
+9. Parallel exec() Tasks
+
+   * Multiple children execute commands like date, who, pwd
+   * Parent waits for all
+
+10. Mini Shell
+
+* Accept user commands
+* Execute using fork() + exec()
+* Support background execution using &
